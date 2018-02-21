@@ -119,3 +119,51 @@ let canAlsoBeNull;
 canAlsoBeNull = null;
 let canThisBeAny = null;
 canThisBeAny = 12;
+
+
+
+
+
+// spread operator
+console.log('REST & SPREAD OPERATOR');
+
+const numbers = [1, 10, 99, -5];
+
+console.log(Math.max(33, 99, 10, -3));
+console.log(Math.max(...numbers));
+
+function makeArrayFunction(arg1: number, arg2: number) {
+    return [arg1, arg2];
+}
+
+// Wanneer je niet weet hoeveel arguments je als parameter mee geeft
+function makeArrayFunction1(...args: number[]) {
+    return [args];
+}
+
+console.log(makeArrayFunction1(1, 2));
+
+
+//DESTRUCTURING
+
+const myHobbies = ['Cooking', 'Coding'];
+
+const [ hobby1, hobby2 ] = myHobbies;
+console.log(hobby1, hobby2);
+
+const userData1 ={
+    userName: 'Rik',
+    age: 21
+};
+
+const { userName, age } = userData1;
+console.log(userName, age);
+
+// TEMPLATE LITERALS
+
+const NameUser = 'Rik';
+// const greetz = 'Hello, my name is ' + NameUser;
+const greetz = ` This is a heading!
+I am ${NameUser}`;
+
+console.log(greetz);

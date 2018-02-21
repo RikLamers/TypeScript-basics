@@ -95,3 +95,35 @@ var canAlsoBeNull;
 canAlsoBeNull = null;
 var canThisBeAny = null;
 canThisBeAny = 12;
+// spread operator
+console.log('REST & SPREAD OPERATOR');
+var numbers = [1, 10, 99, -5];
+console.log(Math.max(33, 99, 10, -3));
+console.log(Math.max.apply(Math, numbers));
+function makeArrayFunction(arg1, arg2) {
+    return [arg1, arg2];
+}
+// Wanneer je niet weet hoeveel arguments je als parameter mee geeft
+function makeArrayFunction1() {
+    var args = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+    }
+    return [args];
+}
+console.log(makeArrayFunction1(1, 2));
+//DESTRUCTURING
+var myHobbies = ['Cooking', 'Coding'];
+var hobby1 = myHobbies[0], hobby2 = myHobbies[1];
+console.log(hobby1, hobby2);
+var userData1 = {
+    userName: 'Rik',
+    age: 21
+};
+var userName = userData1.userName, age = userData1.age;
+console.log(userName, age);
+// TEMPLATE LITERALS
+var NameUser = 'Rik';
+// const greetz = 'Hello, my name is ' + NameUser;
+var greetz = " This is a heading!\nI am " + NameUser;
+console.log(greetz);
