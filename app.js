@@ -42,3 +42,29 @@ var Rik = /** @class */ (function (_super) {
 }(Person));
 var rik = new Rik('Rikkerdtje');
 console.log(rik);
+// GETTERS & SETTERS
+var Plant = /** @class */ (function () {
+    function Plant() {
+        this._species = 'Default';
+    }
+    Object.defineProperty(Plant.prototype, "species", {
+        get: function () {
+            return this._species;
+        },
+        set: function (value) {
+            if (value.length > 3) {
+                this._species = value;
+            }
+            else {
+                this._species = 'Default';
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Plant;
+}());
+var plant = new Plant();
+console.log(plant.species);
+plant.species = 'ABCD';
+console.log(plant.species);

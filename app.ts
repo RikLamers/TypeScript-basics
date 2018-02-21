@@ -40,3 +40,29 @@ class Rik extends Person{
 
 const rik = new Rik('Rikkerdtje');
 console.log(rik);
+
+
+
+// GETTERS & SETTERS
+
+class Plant {
+    private _species: string = 'Default';
+
+    get species() {
+        return this._species;
+    }
+
+    set species(value: string) {
+        if (value.length > 3) {
+            this._species = value;
+        } else {
+            this._species = 'Default';
+        }
+    }
+
+}
+
+let plant = new Plant();
+console.log(plant.species);
+plant.species = 'ABCD';
+console.log(plant.species);
