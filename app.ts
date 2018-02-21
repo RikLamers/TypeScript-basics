@@ -66,3 +66,18 @@ let plant = new Plant();
 console.log(plant.species);
 plant.species = 'ABCD';
 console.log(plant.species);
+
+
+// STATIC PROPS & METHODS
+
+class Helpers {
+    static PI: number = 3.14;
+
+    static calcCircumFerence(diameter: number): number {
+        return this.PI * diameter;
+    }
+
+}
+
+console.log(2 * Helpers.PI);
+console.log(Helpers.calcCircumFerence(8));
