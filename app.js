@@ -121,3 +121,5 @@ var OnlyOne = /** @class */ (function () {
 }());
 var werong = new OnlyOne('The Only One');
 var right = OnlyOne.getInstance();
+console.log(right.name);
+right.name = 'Something else';
