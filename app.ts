@@ -108,3 +108,23 @@ let newProject = new ITProject();
 console.log(newProject);
 newProject.changeName('Super IT Project');
 console.log(newProject);
+
+
+// PRIVATE CONSTRUCTORS
+
+class OnlyOne {
+    private static instance: OnlyOne;
+
+    private constructor(public name: string) { }
+
+    static getInstance() {
+        if (!OnlyOne.instance) {
+            OnlyOne.instance = new OnlyOne('The only one');
+        }
+        return OnlyOne.instance;
+    }
+}
+
+let werong = new OnlyOne('The Only One');
+let right = OnlyOne.getInstance();
+
