@@ -9,117 +9,72 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var Person = /** @class */ (function () {
-    function Person(name, username) {
-        this.username = username;
-        this.age = 21;
+// Exercise 1 - How was your TypeScript Class?
+var Car = /** @class */ (function () {
+    function Car(name) {
+        this.acceleration = 0;
         this.name = name;
     }
-    Person.prototype.printAge = function () {
-        console.log(this.age);
-        this.setType('Old guy');
+    Car.prototype.honk = function () {
+        console.log('Toooooooooot!');
     };
-    Person.prototype.setType = function (type) {
-        this.type = type;
-        console.log(this.type);
+    Car.prototype.accelerate = function (speed) {
+        this.acceleration += speed;
     };
-    return Person;
+    return Car;
 }());
-var person = new Person('Rik Lamers', 'Rikkerdt');
-console.log(person);
-person.printAge();
-// person.setType('Cool guy');
-// INHERITANCE
-var Rik = /** @class */ (function (_super) {
-    __extends(Rik, _super);
-    function Rik(username) {
-        var _this = _super.call(this, 'Rik', username) || this;
-        _this.name = 'Rik';
-        _this.age = 19;
-        return _this;
+var car = new Car('BMW');
+car.honk();
+console.log(car.acceleration);
+car.accelerate(10);
+console.log(car.acceleration);
+// Exercise 2 - Two objects, based on each other ...
+var BaseObject = /** @class */ (function () {
+    function BaseObject() {
+        this.width = 0;
+        this.length = 0;
     }
-    return Rik;
-}(Person));
-var rik = new Rik('Rikkerdtje');
-console.log(rik);
-// GETTERS & SETTERS
-var Plant = /** @class */ (function () {
-    function Plant() {
-        this._species = 'Default';
+    return BaseObject;
+}());
+var Rectangle = /** @class */ (function (_super) {
+    __extends(Rectangle, _super);
+    function Rectangle() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-    Object.defineProperty(Plant.prototype, "species", {
+    Rectangle.prototype.calcSize = function () {
+        return this.width * this.length;
+    };
+    return Rectangle;
+}(BaseObject));
+var rectangle = new Rectangle();
+rectangle.width = 5;
+rectangle.length = 10;
+console.log(rectangle.calcSize());
+// Exercise 3 - Make sure to compile to ES5 (set the target in tsconfig.json)
+var Person = /** @class */ (function () {
+    function Person() {
+        this._firstName = '';
+    }
+    Object.defineProperty(Person.prototype, "firstName", {
         get: function () {
-            return this._species;
+            return this._firstName;
         },
         set: function (value) {
             if (value.length > 3) {
-                this._species = value;
+                this._firstName = value;
             }
             else {
-                this._species = 'Default';
+                this._firstName = '';
             }
         },
         enumerable: true,
         configurable: true
     });
-    return Plant;
+    return Person;
 }());
-var plant = new Plant();
-console.log(plant.species);
-plant.species = 'ABCD';
-console.log(plant.species);
-// STATIC PROPS & METHODS
-var Helpers = /** @class */ (function () {
-    function Helpers() {
-    }
-    Helpers.calcCircumFerence = function (diameter) {
-        return this.PI * diameter;
-    };
-    Helpers.PI = 3.14;
-    return Helpers;
-}());
-console.log(2 * Helpers.PI);
-console.log(Helpers.calcCircumFerence(8));
-// ABSTRACT CLASSES
-// THIS IS JUST HERE TO BE INHERIT
-var Project = /** @class */ (function () {
-    function Project() {
-        this.projectName = 'Default';
-        this.budget = 1000;
-    }
-    Project.prototype.calcBudget = function () {
-        return this.budget * 2;
-    };
-    return Project;
-}());
-var ITProject = /** @class */ (function (_super) {
-    __extends(ITProject, _super);
-    function ITProject() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    ITProject.prototype.changeName = function (name) {
-        this.projectName = name;
-    };
-    return ITProject;
-}(Project));
-var newProject = new ITProject();
-console.log(newProject);
-newProject.changeName('Super IT Project');
-console.log(newProject);
-// PRIVATE CONSTRUCTORS
-var OnlyOne = /** @class */ (function () {
-    function OnlyOne(name) {
-        this.name = name;
-    }
-    OnlyOne.getInstance = function () {
-        if (!OnlyOne.instance) {
-            OnlyOne.instance = new OnlyOne('The only one');
-        }
-        return OnlyOne.instance;
-    };
-    return OnlyOne;
-}());
-var werong = new OnlyOne('The Only One');
-var right = OnlyOne.getInstance();
-console.log(right.name);
-right.name = 'Something else';
+var person = new Person();
+console.log(person.firstName);
+person.firstName = "Ma";
+console.log(person.firstName);
+person.firstName = "Maximilian";
+console.log(person.firstName);

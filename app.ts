@@ -1,135 +1,71 @@
-class Person {
-    // default is public
+// Exercise 1 - How was your TypeScript Class?
+class Car {
     name: string;
-    private type: string;
-    protected age: number = 21;
+    acceleration: number = 0;
 
-    constructor (name: string, public username: string) {
+    constructor(name: string) {
         this.name = name;
     }
 
-    printAge() {
-        console.log(this.age);
-        this.setType('Old guy');
+    honk() {
+        console.log('Toooooooooot!');
     }
 
-    private setType(type: string) {
-        this.type = type;
-        console.log(this.type);
-    }
-
-}
-
-const person = new Person('Rik Lamers', 'Rikkerdt');
-
-console.log(person);
-person.printAge();
-// person.setType('Cool guy');
-
-// INHERITANCE
-
-class Rik extends Person{
-    name = 'Rik';
-
-    constructor(username: string) {
-        super('Rik', username);
-        this.age = 19;
+    accelerate(speed: number) {
+        this.acceleration += speed;
     }
 
 }
 
-const rik = new Rik('Rikkerdtje');
-console.log(rik);
+const car = new Car('BMW');
+car.honk();
+console.log(car.acceleration);
+car.accelerate(10);
+console.log(car.acceleration);
 
+// Exercise 2 - Two objects, based on each other ...
 
+class BaseObject {
+    width: number = 0;
+    length: number = 0;
+}
 
-// GETTERS & SETTERS
+class Rectangle extends BaseObject {
+    calcSize() {
+        return this.width * this.length;
+    }
+}
 
-class Plant {
-    private _species: string = 'Default';
+const rectangle = new Rectangle();
+rectangle.width = 5;
+rectangle.length = 10;
+console.log(rectangle.calcSize());
 
-    get species() {
-        return this._species;
+// Exercise 3 - Make sure to compile to ES5 (set the target in tsconfig.json)
+
+class Person {
+    private _firstName: string = '';
+
+    constructor() { }
+
+    get firstName() {
+        return this._firstName;
     }
 
-    set species(value: string) {
+    set firstName(value: string) {
         if (value.length > 3) {
-            this._species = value;
+            this._firstName = value;
         } else {
-            this._species = 'Default';
+            this._firstName = '';
         }
     }
 
-}
-
-let plant = new Plant();
-console.log(plant.species);
-plant.species = 'ABCD';
-console.log(plant.species);
-
-
-// STATIC PROPS & METHODS
-
-class Helpers {
-    static PI: number = 3.14;
-
-    static calcCircumFerence(diameter: number): number {
-        return this.PI * diameter;
-    }
 
 }
 
-console.log(2 * Helpers.PI);
-console.log(Helpers.calcCircumFerence(8));
-
-
-
-// ABSTRACT CLASSES
-// THIS IS JUST HERE TO BE INHERIT
-abstract class Project {
-    public projectName: string = 'Default';
-    public budget: number = 1000;
-
-    abstract changeName(name: string): void;
-
-    public calcBudget() {
-        return this.budget * 2;
-    }
-
-}
-
-class ITProject extends Project {
-    changeName(name: string): void {
-        this.projectName = name;
-    }
-}
-
-let newProject = new ITProject();
-console.log(newProject);
-newProject.changeName('Super IT Project');
-console.log(newProject);
-
-
-// PRIVATE CONSTRUCTORS
-
-class OnlyOne {
-    private static instance: OnlyOne;
-    public readonly name: string;
-
-    private constructor( name: string) {
-        this.name = name;
-    }
-
-    static getInstance() {
-        if (!OnlyOne.instance) {
-            OnlyOne.instance = new OnlyOne('The only one');
-        }
-        return OnlyOne.instance;
-    }
-}
-
-let werong = new OnlyOne('The Only One');
-let right = OnlyOne.getInstance();
-console.log(right.name);
-right.name = 'Something else';
-
+const person = new Person();
+console.log(person.firstName);
+person.firstName = "Ma";
+console.log(person.firstName);
+person.firstName = "Maximilian";
+console.log(person.firstName);
