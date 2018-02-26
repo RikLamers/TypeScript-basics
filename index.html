@@ -6,6 +6,17 @@
         <title>TypeScript</title>
     </head>
     <body>
-        <script src="./app.js"></script>
+        <script src="node_modules/systemjs/dist/system.js"></script>
+        <script>
+            SystemJS.config({
+                baseURL: '/',
+                packages: {
+                    '/': {
+                        defaultExtention: 'js'
+                    }
+                }
+            });
+            SystemJS.import('./app.js');
+        </script>
     </body>
 </html>

@@ -1,31 +1,19 @@
-"use strict";
-var myMath;
-(function (myMath) {
-    var PI = 3.14;
-    var circle;
-    (function (circle) {
-        function calculateCirmumference(diameter) {
-            return diameter * PI;
-        }
-        circle.calculateCirmumference = calculateCirmumference;
-    })(circle = myMath.circle || (myMath.circle = {}));
-})(myMath || (myMath = {}));
-var myMath;
-(function (myMath) {
-    function calculateRextangle(width, length) {
-        return width * length;
-    }
-    myMath.calculateRextangle = calculateRextangle;
-})(myMath || (myMath = {}));
-/// <reference path="circleMath.ts" />
-/// <reference path="rectengleMath.ts" />
-var CircleMath = myMath.circle;
-console.log(myMath.calculateRextangle(10, 20));
-console.log(CircleMath.calculateCirmumference(3));
-var PI = 3.14;
-function calcMoeilijkeNaam(diameter) {
-    return diameter * PI;
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
 }
-function calculateRectangle(width, length) {
-    return width * length;
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 }
+define(["require", "exports", "./math/circle", "./math/rect"], function (require, exports, Circle, rect_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    Circle = __importStar(Circle);
+    rect_1 = __importDefault(rect_1);
+    console.log(Circle.PI);
+    console.log(Circle.calcMoeilijkeNaam(10));
+    console.log(rect_1.default(20, 50));
+});

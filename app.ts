@@ -1,7 +1,6 @@
-/// <reference path="circleMath.ts" />
-/// <reference path="rectengleMath.ts" />
+import * as Circle from './math/circle';
+import calc from './math/rect';
 
-import CircleMath = myMath.circle;
-
-console.log(myMath.calculateRextangle(10, 20));
-console.log(CircleMath.calculateCirmumference(3));
+console.log(Circle.PI);
+console.log(Circle.calcMoeilijkeNaam(10));
+console.log(calc(20, 50));
